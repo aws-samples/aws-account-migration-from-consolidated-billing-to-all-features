@@ -441,7 +441,7 @@ aws stepfunctions start-execution --state-machine-arn arn:aws:states:us-east-1:1
 Build the Lambda functions in your application with the `sam build --use-container` command.
 
 ```bash
-OrgMigration$ sam build --use-container
+sam build --use-container
 ```
 
 The SAM CLI installs dependencies defined in `functions/*/requirements.txt`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
@@ -451,7 +451,7 @@ The SAM CLI installs dependencies defined in `functions/*/requirements.txt`, cre
 You can test the AWS Lambda functions of the application locally with the included scripts
     Update the file tests/testAll.json with the appropriate values for ROLE_NAME, OLD_ORG_MA, OU_TABLE_NAME, ACCOUNT_TABLE_NAME, ACCEPT_ROLE_NAME, and OLD_MASTER_OU.
 
-        ```
+        ```bash
         {
         "scanOldOrg": {
             "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
@@ -483,6 +483,7 @@ You can test the AWS Lambda functions of the application locally with the includ
         }  
         }
         ```
+    
     Run the following command with the appropriate parameters:
     `sam local invoke [LambdaFunctionName] --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"`
 
@@ -502,7 +503,7 @@ To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs`
 **`NOTE`**: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-OrgMigration$ sam logs -n acceptInvitation --stack-name OrgMigration --tail
+sam logs -n acceptInvitation --stack-name OrgMigration --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
