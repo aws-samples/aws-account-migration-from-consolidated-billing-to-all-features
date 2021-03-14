@@ -1,0 +1,263 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  OrgMigration
+
+  Sample SAM Template for OrgMigration
+
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: OrgMigration
+    Description: Migrate accounts between AWS Organizations
+    Author: Sarat Guttikonda
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: LICENSE.txt
+    ReadmeUrl: README.md
+    Labels: ['tests']
+    HomePageUrl: https://github.com/sguttiko/OrgMigration
+    SemanticVersion: 0.0.1
+    SourceCodeUrl: https://github.com/sguttiko/OrgMigration
+
+Parameters:    
+  OldOrgMA:
+    Description: Management Account Number of the AWS Organizations you are migrating accounts from
+    Type: String
+  OldOrgScanRole:
+    Description: The IAM role assumed by the principal in the new Management Account
+    Type: String
+  OldMasterOU:
+    Description: Name of the OU for the old Management Account in the new AWS Orgainizations
+    Type: String
+  NewOrgAcceptHandshakeRole:
+    Description: Name of the Role created in every account of old AWS Organizations, assumed by Management Account in the new AWS Orgainizations
+    Type: String
+
+Resources:
+  OrgMigrationStateMachine:
+    Type: AWS::Serverless::StateMachine # More info about State Machine Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html
+    Properties:
+      DefinitionUri: statemachine/org_migration.asl.json
+      DefinitionSubstitutions:
+        scanOldOrg: !GetAtt scanOldOrg.Arn
+        replicateOuStructure: !GetAtt replicateOuStructure.Arn
+        inviteAccounts: !GetAtt inviteAccounts.Arn
+        acceptInvitation: !GetAtt acceptInvitation.Arn
+        moveMaster: !GetAtt moveMaster.Arn
+      Policies: # Find out more about SAM policy templates: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html
+        - LambdaInvokePolicy:
+            FunctionName: !Ref scanOldOrg
+        - LambdaInvokePolicy:
+            FunctionName: !Ref replicateOuStructure
+        - LambdaInvokePolicy:
+            FunctionName: !Ref inviteAccounts
+        - LambdaInvokePolicy:
+            FunctionName: !Ref acceptInvitation
+        - LambdaInvokePolicy:
+            FunctionName: !Ref moveMaster
+        # - DynamoDBWritePolicy:
+        #     TableName: !Ref TransactionTable
+
+  OldOrgOuInfoTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey: 
+        Name: OuName
+        Type: String
+        
+  OldOrgAccountInfoTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey: 
+        Name: AccountId
+        Type: String
+  
+  scanOldOrg:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+    Properties:
+      CodeUri: functions/scanOldOrg/
+      Handler: scanOldOrg.lambda_handler
+      Runtime: python3.7
+      Timeout: 30
+      Policies:
+        - Version: '2012-10-17' 
+          Statement:
+            - Sid: OldOrgAccountAssumeRolePolicy
+              Effect: Allow
+              Action:
+                - sts:AssumeRole
+              Resource: !Ref OldOrgScanRole
+            - Sid: RunOrganizaitonsActionsPolicy
+              Effect: Allow
+              Action:
+                - organizations:List*
+                - organizations:Describe*
+              Resource: '*'              
+            - Sid: DynamoDBWritePolicy
+              Effect: Allow
+              Action:
+                - dynamodb:PutItem
+              Resource: [!GetAtt OldOrgOuInfoTable.Arn, !GetAtt OldOrgAccountInfoTable.Arn]
+      Environment:
+        Variables:
+          ROLE_ARN: !Ref OldOrgScanRole
+          OLD_ORG_MA: !Ref OldOrgMA
+          OU_TABLE_NAME: !Ref OldOrgOuInfoTable
+          ACCOUNT_TABLE_NAME: !Ref OldOrgAccountInfoTable
+          
+  replicateOuStructure:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+    Properties:
+      CodeUri: functions/replicateOuStructure/
+      Handler: replicateOuStructure.lambda_handler
+      Runtime: python3.7
+      Timeout: 30
+      Policies:
+        - Version: '2012-10-17' 
+          Statement:
+            - Sid: OldOrgAccountAssumeRolePolicy
+              Effect: Allow
+              Action:
+                - sts:AssumeRole
+              Resource: !Ref OldOrgScanRole            
+            - Sid: RunOrganizaitonsActionsPolicy
+              Effect: Allow
+              Action:
+                - organizations:List*
+                - organizations:Describe*
+                - organizations:CreateOrganizationalUnit
+                - organizations:UpdateOrganizationalUnit
+              Resource: '*'
+            - Sid: DynamoDBReadPolicy
+              Effect: Allow
+              Action:
+                - dynamodb:GetItem
+              Resource: !GetAtt OldOrgOuInfoTable.Arn
+            - Sid: DynamoDBWritePolicy
+              Effect: Allow
+              Action:
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+              Resource: !GetAtt OldOrgOuInfoTable.Arn              
+      Environment:
+        Variables:
+          ROLE_ARN: !Ref OldOrgScanRole
+          OLD_ORG_MA: !Ref OldOrgMA
+          OU_TABLE_NAME: !Ref OldOrgOuInfoTable
+          OLD_MASTER_OU: !Ref OldMasterOU
+          
+  inviteAccounts:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+    Properties:
+      CodeUri: functions/inviteAccounts/
+      Handler: inviteAccounts.lambda_handler
+      Runtime: python3.7
+      Timeout: 30
+      Policies:
+        - Version: '2012-10-17' 
+          Statement:
+            - Sid: RunOrganizaitonsActionsPolicy
+              Effect: Allow
+              Action:
+                - organizations:InviteAccountToOrganization
+              Resource: '*'
+            - Sid: DynamoDBReadPolicy
+              Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:Scan
+              Resource: !GetAtt OldOrgAccountInfoTable.Arn
+            - Sid: DynamoDBWritePolicy
+              Effect: Allow
+              Action:
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+              Resource: !GetAtt OldOrgAccountInfoTable.Arn              
+      Environment:
+        Variables:
+          ACCOUNT_TABLE_NAME: !Ref OldOrgAccountInfoTable
+          OLD_ORG_MA: !Ref OldOrgMA
+
+  acceptInvitation:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+    Properties:
+      CodeUri: functions/acceptInvitation/
+      Handler: acceptInvitation.lambda_handler
+      Runtime: python3.7
+      Timeout: 30
+      Policies:
+        - Version: '2012-10-17' 
+          Statement:
+            - Sid: OldOrgAccountAssumeRolePolicy
+              Effect: Allow
+              Action:
+                - sts:AssumeRole
+              Resource: !Join [ "/", ["arn:aws:iam::*:role", !Ref NewOrgAcceptHandshakeRole]]          
+            - Sid: RunOrganizaitonsActionsPolicy
+              Effect: Allow
+              Action:
+                - organizations:AcceptHandshake
+                - organizations:ListRoots
+                - organizations:MoveAccount
+              Resource: '*'
+            - Sid: DynamoDBReadPolicy
+              Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:Scan
+              Resource: [!GetAtt OldOrgOuInfoTable.Arn, !GetAtt OldOrgAccountInfoTable.Arn]
+      Environment:
+        Variables:
+          ACCOUNT_TABLE_NAME: !Ref OldOrgAccountInfoTable
+          OU_TABLE_NAME: !Ref OldOrgOuInfoTable
+          ACCEPT_ROLE_NAME: !Ref NewOrgAcceptHandshakeRole
+
+  moveMaster:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+    Properties:
+      CodeUri: functions/moveMaster/
+      Handler: moveMaster.lambda_handler
+      Runtime: python3.7
+      Timeout: 30
+      Policies:
+        - Version: '2012-10-17' 
+          Statement:
+            - Sid: OldOrgAccountAssumeRolePolicy
+              Effect: Allow
+              Action:
+                - sts:AssumeRole
+              Resource: !Ref OldOrgScanRole            
+            - Sid: RunOrganizaitonsActionsPolicy
+              Effect: Allow
+              Action:
+                - organizations:AcceptHandshake
+                - organizations:ListRoots
+                - organizations:MoveAccount
+                - organizations:InviteAccountToOrganization                
+              Resource: '*'
+            - Sid: DynamoDBReadPolicy
+              Effect: Allow
+              Action:
+                - dynamodb:GetItem
+              Resource: [!GetAtt OldOrgOuInfoTable.Arn, !GetAtt OldOrgAccountInfoTable.Arn]
+            - Sid: DynamoDBWritePolicy
+              Effect: Allow
+              Action:
+                - dynamodb:UpdateItem
+              Resource: !GetAtt OldOrgAccountInfoTable.Arn
+      Environment:
+        Variables:
+          ROLE_ARN: !Ref OldOrgScanRole
+          ACCOUNT_TABLE_NAME: !Ref OldOrgAccountInfoTable
+          OU_TABLE_NAME: !Ref OldOrgOuInfoTable
+          ACCEPT_ROLE_NAME: !Ref NewOrgAcceptHandshakeRole
+          OLD_ORG_MA: !Ref OldOrgMA
+          OLD_MASTER_OU: !Ref OldMasterOU
+                    
+Outputs:
+  # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html
+  OrgMigrationStateMachineArn:
+    Description: "Org Migration State machine ARN"
+    Value: !Ref OrgMigrationStateMachine
+  OrgMigrationStateMachineRoleArn:
+    Description: "IAM Role created for State machine based on the specified SAM Policy Templates"
+    Value: !GetAtt OrgMigrationStateMachineRole.Arn

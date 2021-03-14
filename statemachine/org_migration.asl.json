@@ -1,0 +1,51 @@
+{
+    "Comment": "A state machine to migration Accounts between AWS Oranizations.",
+    "StartAt": "scanOldOrg",
+    "States": {
+        "scanOldOrg": {
+            "Type": "Task",
+            "Resource": "${scanOldOrg}",
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "States.TaskFailed"
+                    ],
+                    "IntervalSeconds": 15,
+                    "MaxAttempts": 1,
+                    "BackoffRate": 1.5
+                }
+            ],
+            "Next": "replicateOuStructure"
+        },
+        "replicateOuStructure": {
+            "Type": "Task",
+            "Resource": "${replicateOuStructure}",
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "States.TaskFailed"
+                    ],
+                    "IntervalSeconds": 15,
+                    "MaxAttempts": 1,
+                    "BackoffRate": 1.5
+                }
+            ],
+            "Next": "inviteAccounts"
+        },
+        "inviteAccounts": {
+            "Type": "Task",
+            "Resource": "${inviteAccounts}",
+            "Next": "acceptInvitation"
+        },
+        "acceptInvitation": {
+            "Type": "Task",
+            "Resource": "${acceptInvitation}",
+            "Next": "moveMaster"
+        },        
+        "moveMaster": {
+            "Type": "Task",
+            "Resource": "${moveMaster}",
+            "End": true
+        }        
+    }
+}

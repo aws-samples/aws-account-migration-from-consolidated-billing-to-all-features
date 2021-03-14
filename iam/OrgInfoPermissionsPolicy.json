@@ -1,0 +1,41 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "organizations:ListRoots",
+                "organizations:ListDelegatedServicesForAccount",
+                "organizations:DescribeAccount",
+                "organizations:ListChildren",
+                "organizations:EnableAWSServiceAccess",
+                "organizations:DescribeOrganization",
+                "organizations:DescribeHandshake",
+                "organizations:CreatePolicy",
+                "organizations:DeleteOrganizationalUnit",
+                "organizations:ListAccountsForParent",
+                "organizations:ListHandshakesForAccount",
+                "organizations:LeaveOrganization",
+                "organizations:ListOrganizationalUnitsForParent",
+                "organizations:DeleteOrganization",
+                "organizations:DescribePolicy",
+                "organizations:ListCreateAccountStatus",
+                "organizations:DescribeOrganizationalUnit",
+                "organizations:DescribeCreateAccountStatus",
+                "organizations:ListPoliciesForTarget",
+                "organizations:DescribeEffectivePolicy",
+                "organizations:ListTargetsForPolicy",
+                "organizations:ListTagsForResource",
+                "organizations:ListAWSServiceAccessForOrganization",
+                "organizations:AcceptHandshake",
+                "organizations:ListPolicies",
+                "organizations:ListHandshakesForOrganization",
+                "organizations:ListAccounts",
+                "organizations:ListParents",
+                "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
