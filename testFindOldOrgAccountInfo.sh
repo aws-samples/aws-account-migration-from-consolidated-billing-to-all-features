@@ -1,1 +1,0 @@
-sam local invoke findOldOrgAccountInfo --env-vars tests/testFindOldOrgAccountInfo.json --profile $1
