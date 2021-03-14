@@ -26,7 +26,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
 
 ## Prerequisites
 
-### Steps in the ####Existing AWS Organizations####
+### Steps in the ***Existing AWS Organizations***
 
 1.  Copy Cost and Usage Reports (CUR) to the new AWS Organizations by configuring CUR file replication from the source Amazon Simple Storage Service (S3) Bucket in the Management Account of existing AWS Organizations to an S3 bucket in the Management Account of the new AWS Organizations. 
 [Instructions to set up rules to replicate objects between buckets](https://aws.amazon.com/blogs/storage/replicating-existing-objects-between-s3-buckets/)
