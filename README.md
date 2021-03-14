@@ -448,13 +448,49 @@ The SAM CLI installs dependencies defined in `functions/*/requirements.txt`, cre
 
 ## Test Lambda functions locally using SAM CLI
 
-Test Lambda functions in your application locally with the included scripts with 
+You can test the AWS Lambda functions of the application locally with the included scripts
+    Update the file tests/testAll.json with the appropriate values for ROLE_NAME, OLD_ORG_MA, OU_TABLE_NAME, ACCOUNT_TABLE_NAME, ACCEPT_ROLE_NAME, and OLD_MASTER_OU.
 
-`sam local invoke scanOldOrg --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"` command. 
+        ```
+        {
+        "scanOldOrg": {
+            "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
+            "OLD_ORG_MA": "111122223333",
+            "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
+            "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ"
+        },
+        "replicateOuStructure": {
+            "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
+            "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
+            "OLD_MASTER_OU": "OldMasterOU"
+        },
+        "inviteAccounts": {
+            "OLD_ORG_MA": "111122223333",
+            "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ"
+        },
+        "acceptInvitation": {
+            "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-1DLH8H3CLQH6Z",
+            "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-8R0FUR3H8YG",
+            "ACCEPT_ROLE_NAME": "NewOrgAcceptHandshakeRole"
+        },
+        "moveMaster": {
+            "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
+            "OLD_ORG_MA": "111122223333",
+            "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
+            "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ",
+            "ACCEPT_ROLE_NAME": "NewOrgAcceptHandshakeRole",
+            "OLD_MASTER_OU": "OldMasterOU"
+        }  
+        }
+        ```
+    Run the following command with the appropriate parameters:
+    `sam local invoke [LambdaFunctionName] --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"`
 
-**`NOTE`**: Update account number accordingly.
+    `sam local invoke scanOldOrg --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"`
 
-Refer to test[LambdaFunctionName].sh for testing each Lambda function separately.
+    **`NOTE`**: Update account number accordingly.
+
+    Refer to test[LambdaFunctionName].sh for testing each Lambda function separately.
 
 ## Add a resource to your application
 The application template uses AWS Serverless Application Model (AWS SAM) to define application resources. AWS SAM is an extension of AWS CloudFormation with a simpler syntax for configuring common serverless application resources such as functions, triggers, and APIs. For resources not included in [the SAM specification](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md), you can use standard [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) resource types.
