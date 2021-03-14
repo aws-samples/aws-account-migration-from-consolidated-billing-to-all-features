@@ -485,16 +485,16 @@ Update the file `tests/testAll.json` with the appropriate values for ROLE_NAME, 
 }
 ```
 
-    Run the following command with the appropriate parameters:
-    ```
-    `sam local invoke [LambdaFunctionName] --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"`
+Run the following command with the appropriate parameters:
+```
+sam local invoke [LambdaFunctionName] --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"
 
-    `sam local invoke scanOldOrg --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"`
-    ```
+sam local invoke scanOldOrg --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"
+```
 
-    **`NOTE`**: Update account number accordingly.
+**`NOTE`**: Update account number accordingly.
 
-    Refer to test[LambdaFunctionName].sh for testing each Lambda function separately.
+Refer to test[LambdaFunctionName].sh for testing each Lambda function separately.
 
 ## Add a resource to your application
 The application template uses AWS Serverless Application Model (AWS SAM) to define application resources. AWS SAM is an extension of AWS CloudFormation with a simpler syntax for configuring common serverless application resources such as functions, triggers, and APIs. For resources not included in [the SAM specification](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md), you can use standard [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) resource types.
