@@ -450,7 +450,7 @@ The SAM CLI installs dependencies defined in `functions/*/requirements.txt`, cre
 
 You can test the AWS Lambda functions of the application locally with the included scripts
     
-Update the file `tests/testAll.json` with the appropriate values for ROLE_NAME, OLD_ORG_MA, OU_TABLE_NAME, ACCOUNT_TABLE_NAME, ACCEPT_ROLE_NAME, and OLD_MASTER_OU.
+**`NOTE`**: Update the file `tests/testAll.json` with the appropriate values for ROLE_NAME, OLD_ORG_MA, OU_TABLE_NAME, ACCOUNT_TABLE_NAME, ACCEPT_ROLE_NAME, and OLD_MASTER_OU.
 
 ```bash
 {
@@ -491,8 +491,6 @@ sam local invoke [LambdaFunctionName] --env-vars tests/testAll.json --profile $1
 
 sam local invoke scanOldOrg --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"
 ```
-
-**`NOTE`**: Update account number accordingly.
 
 Refer to test[LambdaFunctionName].sh for testing each Lambda function separately.
 
