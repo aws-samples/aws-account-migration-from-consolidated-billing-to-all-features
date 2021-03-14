@@ -470,8 +470,8 @@ You can test the AWS Lambda functions of the application locally with the includ
         "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ"
     },
     "acceptInvitation": {
-        "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-1DLH8H3CLQH6Z",
-        "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-8R0FUR3H8YG",
+        "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
+        "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ",
         "ACCEPT_ROLE_NAME": "NewOrgAcceptHandshakeRole"
     },
     "moveMaster": {
