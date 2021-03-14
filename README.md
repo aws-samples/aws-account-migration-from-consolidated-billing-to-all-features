@@ -58,7 +58,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
 
     1. Create an IAM Role (OrgInfoRole) with the following permissions
 
-        Update the file iam/OrgInfoTrustPolicy.json with the Account Number of the Management Account in the new AWS Organizations
+        Update the file `iam/OrgInfoTrustPolicy.json` with the Account Number of the Management Account in the new AWS Organizations
 
         ```
         {
@@ -125,7 +125,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
         cd OrgMigration
         ```
 
-        Update the file iam/OrgInfoTrustPolicy.json with the Account Number of the Management Account in the new AWS Organizations
+        Update the file `iam/OrgInfoTrustPolicy.json` with the Account Number of the Management Account in the new AWS Organizations
 
 
         ```
@@ -450,41 +450,41 @@ The SAM CLI installs dependencies defined in `functions/*/requirements.txt`, cre
 
 You can test the AWS Lambda functions of the application locally with the included scripts
     
-Update the file tests/testAll.json with the appropriate values for ROLE_NAME, OLD_ORG_MA, OU_TABLE_NAME, ACCOUNT_TABLE_NAME, ACCEPT_ROLE_NAME, and OLD_MASTER_OU.
+Update the file `tests/testAll.json` with the appropriate values for ROLE_NAME, OLD_ORG_MA, OU_TABLE_NAME, ACCOUNT_TABLE_NAME, ACCEPT_ROLE_NAME, and OLD_MASTER_OU.
 
 ```bash
-        {
-            "scanOldOrg": {
-                "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
-                "OLD_ORG_MA": "111122223333",
-                "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
-                "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ"
-            },
-            "replicateOuStructure": {
-                "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
-                "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
-                "OLD_MASTER_OU": "OldMasterOU"
-            },
-            "inviteAccounts": {
-                "OLD_ORG_MA": "111122223333",
-                "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ"
-            },
-            "acceptInvitation": {
-                "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-1DLH8H3CLQH6Z",
-                "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-8R0FUR3H8YG",
-                "ACCEPT_ROLE_NAME": "NewOrgAcceptHandshakeRole"
-            },
-            "moveMaster": {
-                "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
-                "OLD_ORG_MA": "111122223333",
-                "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
-                "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ",
-                "ACCEPT_ROLE_NAME": "NewOrgAcceptHandshakeRole",
-                "OLD_MASTER_OU": "OldMasterOU"
-            }  
-        }
+{
+    "scanOldOrg": {
+        "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
+        "OLD_ORG_MA": "111122223333",
+        "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
+        "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ"
+    },
+    "replicateOuStructure": {
+        "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
+        "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
+        "OLD_MASTER_OU": "OldMasterOU"
+    },
+    "inviteAccounts": {
+        "OLD_ORG_MA": "111122223333",
+        "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ"
+    },
+    "acceptInvitation": {
+        "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-1DLH8H3CLQH6Z",
+        "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-8R0FUR3H8YG",
+        "ACCEPT_ROLE_NAME": "NewOrgAcceptHandshakeRole"
+    },
+    "moveMaster": {
+        "ROLE_NAME": "arn:aws:iam::111122223333:role/OrgInfoRole",
+        "OLD_ORG_MA": "111122223333",
+        "OU_TABLE_NAME": "OrgMigration-OldOrgOuInfoTable-XXXXYYYYZZZZZ",
+        "ACCOUNT_TABLE_NAME": "OrgMigration-OldOrgAccountInfoTable-XXXXYYYYZZZZZ",
+        "ACCEPT_ROLE_NAME": "NewOrgAcceptHandshakeRole",
+        "OLD_MASTER_OU": "OldMasterOU"
+    }  
+}
 ```
-    
+
     Run the following command with the appropriate parameters:
     ```
     `sam local invoke [LambdaFunctionName] --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"`
