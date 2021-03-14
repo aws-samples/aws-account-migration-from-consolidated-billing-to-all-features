@@ -54,7 +54,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
         cd OrgMigration
         ```
 
-4.  In the Management Account of the ** Existing AWS Organizations **
+4.  In the ***Management Account*** of the `Existing AWS Organizations`
 
     1. Create an IAM Role (OrgInfoRole) with the following permissions
 
@@ -110,7 +110,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
     aws iam attach-role-policy --role-name OrgInfoRole --policy-arn arn:aws:iam::111122223333:policy/OrgInfoPolicy
     ```
 
-5.  In ** each ** of the Member Accounts of the ** existing AWS Organizations **
+5.  In ***each*** of the ***Member Accounts*** of the `existing AWS Organizations`
 
     1. Create an IAM Role (NewOrgAcceptHandshakeRole) with the following permissions
 
@@ -219,7 +219,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
 ## Deploy the application in the Management Account of the New AWS Organizations
 To build and deploy your application for the first time, run the following in your shell:
 
-1. Download the code in the terminal for the Management Account of the ** New ** AWS Organizations
+1. Download the code in the terminal for the ***Management Account*** of the `New AWS Organizations`
 
     ```
     git clone https://github.com/sguttiko/OrgMigration
@@ -323,7 +323,7 @@ Configuring SAM deploy
         Stack name                   : OrgMigration
         Region                       : us-east-1
         Confirm changeset            : True
-        Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-unierj59hcp0
+        Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-xxxx123yyyy
         Capabilities                 : ["CAPABILITY_IAM"]
         Parameter overrides          : {"OldOrgMA": "111122223333", "OldOrgScanRole": "arn:aws:iam::111122223333:role/OrgInfoRole", "OldMasterOU": "OldMasterOU", "NewOrgAcceptHandshakeRole": "NewOrgAcceptHandshakeRole"}
         Signing Profiles             : {}
@@ -420,19 +420,19 @@ Outputs
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Key                 OrgMigrationStateMachineRoleArn                                                                                                                       
 Description         IAM Role created for State machine based on the specified SAM Policy Templates                                                                        
-Value               arn:aws:iam::111122223333:role/OrgMigration-OrgMigrationStateMachineRole-YMGQ0C2E7IZU                                                                 
+Value               arn:aws:iam::111122223333:role/OrgMigration-OrgMigrationStateMachineRole-XXXXYYYYZZZZ                                                                 
 
 Key                 OrgMigrationStateMachineArn                                                                                                                           
 Description         Org Migration State machine ARN                                                                                                                       
-Value               arn:aws:states:us-east-1:111122223333:stateMachine:OrgMigrationStateMachine-HSCswl9XhNPV                                                              
+Value               arn:aws:states:us-east-1:111122223333:stateMachine:OrgMigrationStateMachine-XXXXYYYYZZZZ                                                              
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ```
 
 ```
-aws stepfunctions start-execution --state-machine-arn arn:aws:states:us-east-1:111122223333:stateMachine:OrgMigrationStateMachine-HSCswl9XhNPV
+aws stepfunctions start-execution --state-machine-arn arn:aws:states:us-east-1:111122223333:stateMachine:OrgMigrationStateMachine-XYZ123YYY
     {
-        "executionArn": "arn:aws:states:us-east-1:270747450568:execution:OrgMigrationStateMachine-dqTsdp1lJa8g:64995607-ebf6-4f4f-b137-7b9bb854f681",
+        "executionArn": "arn:aws:states:us-east-1:111122223333:execution:OrgMigrationStateMachine-xyz1234abc:64995607-ebf6-4f4f-b137-7b9bb854f681",
         "startDate": "2021-01-25T22:08:05.824000+00:00"
     }
 ```
