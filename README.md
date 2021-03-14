@@ -2,6 +2,11 @@
 
 This project contains source code and supporting files for a serverless application that you can use to migration accounts from an existing (also referred as "old" in the documentation) AWS Organization with Consolidated Billing to a new AWS Organization with All Features enabled. 
 
+##### Table of Contents  
+[Overview](#Overview)  
+[Prerequisites](#Prerequisites)  
+
+## Overview
 You can deploy the serverless application with the SAM CLI, which includes the following files and folders:
 
 - functions - Code for the application's AWS Lambda functions:
@@ -180,7 +185,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
     aws iam attach-role-policy --role-name NewOrgAcceptHandshakeRole --policy-arn arn:aws:iam::111122223333:policy/NewOrgAcceptHandshakePolicy
     ```
 
-### Steps in the ** New ** AWS Organizations
+### Steps in the `New AWS Organizations`
 1.  Create an Account
 2.  Create AWS Organizations in it with All Features
 
