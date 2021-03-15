@@ -1,8 +1,15 @@
 # Automating Migration of AWS Accounts from Consolidated Billing to All Features 
 
 ## Table of Contents  
-[Overview](#Overview)  
-[Prerequisites](#Prerequisites)  
+[Overview](#Overview)
+[Prerequisites](#Prerequisites)
+[Deploy the application](#Deploy the application in the Management Account of the New AWS Organizations)
+[Run the application](#Run the application)
+[Sample deployment](#Sample deployment)
+[Test AWS Lambda functions locally](#Test AWS Lambda functions locally using SAM CLI)
+[Cleanup](#Cleanup)
+[Security](#Security)
+[License](#License)
 
 ## Overview
 
@@ -452,7 +459,7 @@ sam build --use-container
 
 The SAM CLI installs dependencies defined in `functions/*/requirements.txt`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
 
-## Test Lambda functions locally using SAM CLI
+## Test AWS Lambda functions locally using SAM CLI
 
 You can test the AWS Lambda functions of the application locally with the included scripts
     
