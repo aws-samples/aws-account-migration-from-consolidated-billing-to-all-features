@@ -14,9 +14,9 @@ Metadata:
     LicenseUrl: LICENSE.txt
     ReadmeUrl: README.md
     Labels: ['tests']
-    HomePageUrl: https://github.com/sguttiko/OrgMigration
+    HomePageUrl: https://github.com/aws-samples/aws-account-migration-from-consolidated-billing-to-all-features
     SemanticVersion: 0.0.1
-    SourceCodeUrl: https://github.com/sguttiko/OrgMigration
+    SourceCodeUrl: https://github.com/aws-samples/aws-account-migration-from-consolidated-billing-to-all-features
 
 Parameters:    
   OldOrgMA:
