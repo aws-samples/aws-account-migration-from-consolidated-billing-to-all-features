@@ -45,7 +45,6 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
 [Back to Table of Contents](#Table-of-Contents)
 
 ### Steps in the `Existing AWS Organizations`
-[Back to Table of Contents](#Table-of-Contents)
 
 1.  Copy Cost and Usage Reports (CUR) to the new AWS Organizations by configuring CUR file replication from the source Amazon Simple Storage Service (S3) Bucket in the Management Account of existing AWS Organizations to an S3 bucket in the Management Account of the new AWS Organizations. 
 [Instructions to set up rules to replicate objects between buckets](https://aws.amazon.com/blogs/storage/replicating-existing-objects-between-s3-buckets/)
@@ -291,7 +290,6 @@ Run the application in the Management Account of the New AWS Organizations
 2. Ensure the state machine executed successfully
 
 ## Sample deployment
-[Back to Table of Contents](#Table-of-Contents)
 
 ```bash
 sam build
@@ -542,7 +540,7 @@ You can find more information and examples about filtering Lambda function logs 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
-aws cloudformation delete-stack --stack-name [StackName]
+aws cloudformation delete-stack --stack-name [S]
 aws cloudformation delete-stack --stack-name OrgMigration
 ```
 
