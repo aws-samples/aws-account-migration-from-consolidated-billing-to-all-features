@@ -1,17 +1,12 @@
 # Automating Migration of AWS Accounts from Consolidated Billing to All Features 
 
-## Table of Contents  
-[Overview](#Overview)
-
-[Prerequisites](#Prerequisites)
-
-[Deploy](#Deploy the application in the Management Account of the New AWS Organizations) 
-
-[Cleanup](#Cleanup)
-
-[Security](#Security)
-
-[License](#License)
+## Table of Contents
+* [Overview](#Overview)
+* [Prerequisites](#Prerequisites)
+* [Deploy](Deploy the application in the Management Account of the New AWS Organizations) 
+* [Cleanup](#Cleanup)
+* [Security](#Security)
+* [License](#License)
 
 ## Overview
 
