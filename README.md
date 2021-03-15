@@ -1,5 +1,7 @@
 # Automating Migration of AWS Accounts from Consolidated Billing to All Features 
 
+![Account Migration](images/AccountMigration.jpeg)
+
 ## Table of Contents
 * [Overview](#Overview)
 * [Prerequisites](#Prerequisites)
@@ -454,6 +456,8 @@ aws stepfunctions start-execution --state-machine-arn arn:aws:states:us-east-1:1
         "startDate": "2021-01-25T22:08:05.824000+00:00"
     }
 ```
+
+A successful execution of the state machine would look like the following in the AWS Step Functions Console
 
 ![Successful State Machine Execution](images/SuccessfulStateMachineExecution.jpeg)
 ## Use the SAM CLI to build locally
