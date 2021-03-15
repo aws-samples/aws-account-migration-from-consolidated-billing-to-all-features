@@ -11,7 +11,7 @@ Metadata:
     Description: Migrate accounts between AWS Organizations
     Author: Sarat Guttikonda
     SpdxLicenseId: Apache-2.0
-    LicenseUrl: LICENSE.txt
+    LicenseUrl: LICENSE
     ReadmeUrl: README.md
     Labels: ['tests']
     HomePageUrl: https://github.com/aws-samples/aws-account-migration-from-consolidated-billing-to-all-features
