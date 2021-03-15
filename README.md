@@ -8,11 +8,12 @@
 * [Deploy the application](#Deploy-the-application)
 * [Run the application](#Run-the-application)
 * [Sample Deployment](#Sample-Deployment)
+* [Test AWS Lambda functions locally](#Test-AWS-Lambda-functions-locally)
 * [Cleanup](#Cleanup)
 * [Security](#Security)
 * [License](#License)
 
-## Overview
+## Overview [Table of Contents](#Table-of-Contents)
 
 This project contains source code and supporting files for a serverless application that you can use to migration accounts from an existing (also referred as "old" in the documentation) AWS Organization with Consolidated Billing to a new AWS Organization with All Features enabled. 
 
@@ -465,9 +466,9 @@ sam build --use-container
 
 The SAM CLI installs dependencies defined in `functions/*/requirements.txt`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
 
-## Test AWS Lambda functions locally using SAM CLI
+## Test AWS Lambda functions locally
 
-You can test the AWS Lambda functions of the application locally with the included scripts
+You can test the AWS Lambda functions of the application locally with the included scripts using AWS SAM CLI
     
 **`NOTE`**: Update the file `tests/testAll.json` with the appropriate values for ROLE_NAME, OLD_ORG_MA, OU_TABLE_NAME, ACCOUNT_TABLE_NAME, ACCEPT_ROLE_NAME, and OLD_MASTER_OU.
 
