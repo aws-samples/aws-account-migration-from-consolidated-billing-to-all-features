@@ -2,9 +2,13 @@
 
 ## Table of Contents  
 [Overview](#Overview)
+
 [Prerequisites](#Prerequisites)
+
 [Cleanup](#Cleanup)
+
 [Security](#Security)
+
 [License](#License)
 
 ## Overview
