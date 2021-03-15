@@ -517,9 +517,9 @@ You can test the AWS Lambda functions of the application locally with the includ
 
 Run the following command with the appropriate parameters:
 ```
-sam local invoke [LambdaFunctionName] --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"
+sam local invoke [LambdaFunctionName] --env-vars tests/testAll.json --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"
 
-sam local invoke scanOldOrg --env-vars tests/testAll.json --profile $1 --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"
+sam local invoke scanOldOrg --env-vars tests/testAll.json --parameter-overrides "ParameterKey=OldOrgScanRole,ParameterValue=arn:aws:iam::111122223333:role/OrgInfoRole"
 ```
 
 Refer to test[LambdaFunctionName].sh for testing each Lambda function separately.
