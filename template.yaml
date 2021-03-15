@@ -1,9 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  OrgMigration
-
-  Sample SAM Template for OrgMigration
+  AWS SAM Template to buid a serverless application that you can use to migration accounts from an existing AWS Organization with Consolidated Billing to a new AWS Organization with All Features enabled.
 
 Metadata:
   AWS::ServerlessRepo::Application:
@@ -54,8 +52,6 @@ Resources:
             FunctionName: !Ref acceptInvitation
         - LambdaInvokePolicy:
             FunctionName: !Ref moveMaster
-        # - DynamoDBWritePolicy:
-        #     TableName: !Ref TransactionTable
 
   OldOrgOuInfoTable:
     Type: AWS::Serverless::SimpleTable
@@ -256,8 +252,8 @@ Resources:
 Outputs:
   # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html
   OrgMigrationStateMachineArn:
-    Description: "Org Migration State machine ARN"
+    Description: "ARN of the created State machine"
     Value: !Ref OrgMigrationStateMachine
   OrgMigrationStateMachineRoleArn:
-    Description: "IAM Role created for State machine based on the specified SAM Policy Templates"
+    Description: "IAM Role created for the state machine based on the specified SAM Policy Templates"
     Value: !GetAtt OrgMigrationStateMachineRole.Arn
