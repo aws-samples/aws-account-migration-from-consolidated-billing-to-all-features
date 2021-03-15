@@ -3,6 +3,7 @@
 ## Table of Contents
 * [Overview](#Overview)
 * [Prerequisites](#Prerequisites)
+    * [Steps in the Existing AWS Organizations](#Steps-in-the-Existing-AWS-Organizations)
 * [Deploy](#Deploy)
 * [Run](#Run)
 * [Sample Deployment](#Sample-Deployment)
