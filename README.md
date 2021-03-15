@@ -448,7 +448,7 @@ Value               arn:aws:states:us-east-1:111122223333:stateMachine:OrgMigrat
 ```
 
 ```
-aws stepfunctions start-execution --state-machine-arn arn:aws:states:us-east-1:111122223333:stateMachine:OrgMigrationStateMachine-XYZ123YYY
+aws stepfunctions start-execution --state-machine-arn arn:aws:states:us-east-1:111122223333:stateMachine:OrgMigrationStateMachine-XXXXYYYYZZZZ
     {
         "executionArn": "arn:aws:states:us-east-1:111122223333:execution:OrgMigrationStateMachine-xyz1234abc:64995607-ebf6-4f4f-b137-7b9bb854f681",
         "startDate": "2021-01-25T22:08:05.824000+00:00"
