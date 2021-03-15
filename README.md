@@ -14,7 +14,7 @@
 * [License](#License)
 
 ## Overview 
-[Table of Contents](#Table-of-Contents)
+[Back to Table of Contents](#Table-of-Contents)
 
 This project contains source code and supporting files for a serverless application that you can use to migration accounts from an existing (also referred as "old" in the documentation) AWS Organization with Consolidated Billing to a new AWS Organization with All Features enabled. 
 
@@ -41,10 +41,10 @@ If you prefer to use an integrated development environment (IDE) to build and te
 The AWS Toolkit for VS Code includes full support for state machine visualization, enabling you to visualize your state machine in real time as you build. The AWS Toolkit for VS Code includes a language server for Amazon States Language, which lints your state machine definition to highlight common errors, provides auto-complete support, and code snippets for each state, enabling you to build state machines faster.
 
 ## Prerequisites
-[Table of Contents](#Table-of-Contents)
+[Back to Table of Contents](#Table-of-Contents)
 
 ### Steps in the `Existing AWS Organizations`
-[Table of Contents](#Table-of-Contents)
+[Back to Table of Contents](#Table-of-Contents)
 
 1.  Copy Cost and Usage Reports (CUR) to the new AWS Organizations by configuring CUR file replication from the source Amazon Simple Storage Service (S3) Bucket in the Management Account of existing AWS Organizations to an S3 bucket in the Management Account of the new AWS Organizations. 
 [Instructions to set up rules to replicate objects between buckets](https://aws.amazon.com/blogs/storage/replicating-existing-objects-between-s3-buckets/)
@@ -199,7 +199,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
     ```
 
 ### Steps in the `New AWS Organizations`
-[Table of Contents](#Table-of-Contents)
+[Back to Table of Contents](#Table-of-Contents)
 
 1.  Create an Account
 2.  Create AWS Organizations in it with All Features
@@ -237,7 +237,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
 4. If customer has EDP/PPA on the existing account, add new Management Account to the EDP/PPA (AWS Account Team will help the customer)
 
 ## Deploy the application
-[Table of Contents](#Table-of-Contents)
+[Back to Table of Contents](#Table-of-Contents)
 
 Deploy the application in the Management Account of the New AWS Organizations
 
@@ -279,7 +279,7 @@ Command `sam deploy --guided`: Will package and deploy your application to AWS, 
 * **Save arguments to samconfig.toml**: If set to yes, your choices will be saved to a configuration file inside the project, so that in the future you can just re-run `sam deploy` without parameters to deploy changes to your application.
 
 ## Run the application
-[Table of Contents](#Table-of-Contents)
+[Back to Table of Contents](#Table-of-Contents)
 
 Run the application in the Management Account of the New AWS Organizations
 
@@ -290,7 +290,7 @@ Run the application in the Management Account of the New AWS Organizations
 2. Ensure the state machine executed successfully
 
 ## Sample deployment
-[Table of Contents](#Table-of-Contents)
+[Back to Table of Contents](#Table-of-Contents)
 
 ```bash
 sam build
@@ -475,7 +475,7 @@ sam build --use-container
 The SAM CLI installs dependencies defined in `functions/*/requirements.txt`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
 
 ## Test AWS Lambda functions locally
-[Table of Contents](#Table-of-Contents)
+[Back to Table of Contents](#Table-of-Contents)
 
 You can test the AWS Lambda functions of the application locally with the included scripts using AWS SAM CLI
     
@@ -539,7 +539,7 @@ sam logs -n acceptInvitation --stack-name OrgMigration --tail
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
 
 ## Cleanup
-[Table of Contents](#Table-of-Contents)
+[Back to Table of Contents](#Table-of-Contents)
 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
