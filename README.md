@@ -4,8 +4,9 @@
 * [Overview](#Overview)
 * [Prerequisites](#Prerequisites)
     * [Steps in the Existing AWS Organizations](#Steps-in-the-Existing-AWS-Organizations)
-* [Deploy](#Deploy)
-* [Run](#Run)
+    * [Steps in the New AWS Organizations](#Steps-in-the-New-AWS-Organizations)
+* [Deploy the application](#Deploy-the-application)
+* [Run the application](#Run-the-application)
 * [Sample Deployment](#Sample-Deployment)
 * [Cleanup](#Cleanup)
 * [Security](#Security)
@@ -229,7 +230,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
 
 4. If customer has EDP/PPA on the existing account, add new Management Account to the EDP/PPA (AWS Account Team will help the customer)
 
-## Deploy
+## Deploy the application
 
 Deploy the application in the Management Account of the New AWS Organizations
 
@@ -270,7 +271,7 @@ Command `sam deploy --guided`: Will package and deploy your application to AWS, 
 * **Allow SAM CLI IAM role creation**: Many AWS SAM templates, including this example, create AWS IAM roles required for the AWS Lambda function(s) included to access AWS services. By default, these are scoped down to minimum required permissions. To deploy an AWS CloudFormation stack which creates or modified IAM roles, the `CAPABILITY_IAM` value for `capabilities` must be provided. If permission isn't provided through this prompt, to deploy this example you must explicitly pass `--capabilities CAPABILITY_IAM` to the `sam deploy` command.
 * **Save arguments to samconfig.toml**: If set to yes, your choices will be saved to a configuration file inside the project, so that in the future you can just re-run `sam deploy` without parameters to deploy changes to your application.
 
-## Run 
+## Run the application
 
 Run the application in the Management Account of the New AWS Organizations
 
