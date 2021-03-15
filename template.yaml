@@ -1,7 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  AWS SAM Template to buid a serverless application that you can use to migration accounts from an existing AWS Organization with Consolidated Billing to a new AWS Organization with All Features enabled.
+  AWS SAM Template to buid a serverless application that you can use to migration accounts 
+  from an existing AWS Organization with Consolidated Billing to a new AWS Organization 
+  with All Features enabled.
 
 Metadata:
   AWS::ServerlessRepo::Application:
