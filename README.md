@@ -454,6 +454,8 @@ aws stepfunctions start-execution --state-machine-arn arn:aws:states:us-east-1:1
         "startDate": "2021-01-25T22:08:05.824000+00:00"
     }
 ```
+
+![Successful State Machine Execution](images/SuccessfulStateMachineExecution.jpeg)
 ## Use the SAM CLI to build locally
 
 Build the Lambda functions in your application with the `sam build --use-container` command.
