@@ -3,10 +3,6 @@
 ## Table of Contents  
 [Overview](#Overview)
 [Prerequisites](#Prerequisites)
-[Deploy](#Deploy the application in the Management Account of the New AWS Organizations)
-[Run](#Run the application)
-[SampleDeployment](#Sample deployment)
-[TestLocally](#Test AWS Lambda functions locally using SAM CLI)
 [Cleanup](#Cleanup)
 [Security](#Security)
 [License](#License)
