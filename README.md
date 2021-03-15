@@ -128,7 +128,7 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
     aws iam attach-role-policy --role-name OrgInfoRole --policy-arn arn:aws:iam::111122223333:policy/OrgInfoPolicy
     ```
 
-5.  In ***each*** of the ***Member Accounts*** of the `existing AWS Organizations`
+5.  In ***each*** of the ***Member Accounts*** of the `Existing AWS Organizations`
 
     1. Create an IAM Role (NewOrgAcceptHandshakeRole) with the following permissions
 
