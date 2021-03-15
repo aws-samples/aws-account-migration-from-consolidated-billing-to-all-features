@@ -5,6 +5,8 @@
 
 [Prerequisites](#Prerequisites)
 
+[Deploy](#Deploy the application in the Management Account of the New AWS Organizations) 
+
 [Cleanup](#Cleanup)
 
 [Security](#Security)
