@@ -28,9 +28,11 @@ Parameters:
   OldMasterOU:
     Description: Name of the OU for the old Management Account in the new AWS Orgainizations
     Type: String
+    Default: "OldMasterOU"
   NewOrgAcceptHandshakeRole:
     Description: Name of the Role created in every account of old AWS Organizations, assumed by Management Account in the new AWS Orgainizations
     Type: String
+    Default: "NewOrgAcceptHandshakeRole"
 
 Resources:
   OrgMigrationStateMachine:
@@ -256,6 +258,3 @@ Outputs:
   OrgMigrationStateMachineArn:
     Description: "ARN of the created State machine"
     Value: !Ref OrgMigrationStateMachine
-  OrgMigrationStateMachineRoleArn:
-    Description: "IAM Role created for the state machine based on the specified SAM Policy Templates"
-    Value: !GetAtt OrgMigrationStateMachineRole.Arn
