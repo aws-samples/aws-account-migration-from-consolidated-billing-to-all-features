@@ -447,10 +447,6 @@ CloudFormation outputs from deployed stack
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Outputs                                                                                                                                                                   
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Key                 OrgMigrationStateMachineRoleArn                                                                                                                       
-Description         IAM Role created for State machine based on the specified SAM Policy Templates                                                                        
-Value               arn:aws:iam::111122223333:role/OrgMigration-OrgMigrationStateMachineRole-XXXXYYYYZZZZ                                                                 
-
 Key                 OrgMigrationStateMachineArn                                                                                                                           
 Description         Org Migration State machine ARN                                                                                                                       
 Value               arn:aws:states:us-east-1:111122223333:stateMachine:OrgMigrationStateMachine-XXXXYYYYZZZZ                                                              
