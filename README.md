@@ -69,8 +69,8 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
     3.  Download the code
 
         ```
-        git clone https://github.com/sguttiko/OrgMigration
-        cd OrgMigration
+        git clone https://github.com/aws-samples/aws-account-migration-from-consolidated-billing-to-all-features
+        cd aws-account-migration-from-consolidated-billing-to-all-features
         ```
 
 4.  In the ***Management Account*** of the `Existing AWS Organizations`
@@ -140,8 +140,8 @@ The AWS Toolkit for VS Code includes full support for state machine visualizatio
         ```
 
         ```
-        git clone https://github.com/sguttiko/OrgMigration
-        cd OrgMigration
+        git clone https://github.com/aws-samples/aws-account-migration-from-consolidated-billing-to-all-features
+        cd aws-account-migration-from-consolidated-billing-to-all-features
         ```
 
         Update the file `iam/OrgInfoTrustPolicy.json` with the Account Number of the Management Account in the new AWS Organizations
@@ -247,8 +247,8 @@ To build and deploy your application for the first time, run the following in yo
 1. Download the code in the terminal for the ***Management Account*** of the `New AWS Organizations`
 
     ```
-    git clone https://github.com/sguttiko/OrgMigration
-    cd OrgMigration
+    git clone https://github.com/aws-samples/aws-account-migration-from-consolidated-billing-to-all-features
+    cd aws-account-migration-from-consolidated-billing-to-all-features
     ```
 
     **`NOTE`**: Ensure you are running python 3.7 with the following command:
@@ -530,6 +530,7 @@ To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs`
 **`NOTE`**: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
+sam logs -n acceptInvitation --stack-name [StackName] --tail
 sam logs -n acceptInvitation --stack-name OrgMigration --tail
 ```
 
@@ -541,6 +542,7 @@ You can find more information and examples about filtering Lambda function logs 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
+aws cloudformation delete-stack --stack-name [StackName]
 aws cloudformation delete-stack --stack-name OrgMigration
 ```
 
