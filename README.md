@@ -26,7 +26,7 @@ You can deploy the serverless application with the SAM CLI, which includes the f
     - scanOldOrg - Scans the old AWS Organization and persists the details of AWSAccounts and AWS Organizational Units in Amazon DynamoDB Tables
     - replicateOuStructure - Replicates the old AWS Organization structure in the new AWS Organization
     - inviteAccounts - Sends invitations from new AWS Organization to all the accounts in the old AWS Organization
-    - acceptInvitation - Assumes an IAM role in each member account of the old AWS Organizaton to accept the invitation from the new AWS Organization and moves accounts into the appropriate OUs as per the old AWS Organization's structure.
+    - acceptInvitation - Assumes an IAM role in each member account of the old AWS Organization to accept the invitation from the new AWS Organization and moves accounts into the appropriate OUs as per the old AWS Organization's structure.
     - moveMaster - Assumes an IAM role in the Management Account of the old AWS Organization to accept the invitation from the new AWS Organization and moves account into a separate OU dedicated for the Management Account.
 - statemachines - Definition for the state machine that orchestrates the account migration workflow.
 - template.yaml - A template that defines the application's AWS resources.
