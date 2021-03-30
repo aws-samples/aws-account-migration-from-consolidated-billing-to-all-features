@@ -537,6 +537,7 @@ You can find more information and examples about filtering Lambda function logs 
 ## Cleanup
 
 - Delete the AWS resources created by they automated solution:
+
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
@@ -545,6 +546,7 @@ aws cloudformation delete-stack --stack-name OrgMigration
 ```
 
 - Delete the Amazon CloudWatch Logs:
+
 Delete all Amazon CloudWatch log groups. The log groups will have the prefix of "/aws/lambda/[StackName]-"
 
 ```bash
@@ -552,7 +554,8 @@ aws logs delete-log-group --log-group-name [CloudWatch Log Group Name]
 aws logs delete-log-group --log-group-name /aws/lambda/OrgMigration-inviteAccounts-1XXXXYYYYZZZZ
 ```
 
-- Delete the Amazon S3 bucket with the AWS SAM template
+- Delete the Amazon S3 bucket with the AWS SAM template:
+
 The AWS SAM CLI creates an Amazon S3 bucket to host the AWS SAM template. This bucket will have a prefix of "aws-sam-cli-managed-default-samclisourcebucket-", and a folder with the StackName you chose to build the application. 
 Example Amazon S3 Bucket Name: aws-sam-cli-managed-default-samclisourcebucket-1xxxxyyyyzzzz
 Example folder in the Bucket: aws-sam-cli-managed-default-samclisourcebucket-1xxxxyyyyzzzz/OrgMigration
