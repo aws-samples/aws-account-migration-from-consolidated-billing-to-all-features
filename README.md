@@ -557,7 +557,9 @@ aws logs delete-log-group --log-group-name /aws/lambda/OrgMigration-inviteAccoun
 - Delete the Amazon S3 bucket with the AWS SAM template:
 
 The AWS SAM CLI creates an Amazon S3 bucket to host the AWS SAM template. This bucket will have a prefix of "aws-sam-cli-managed-default-samclisourcebucket-", and a folder with the StackName you chose to build the application. 
+
 Example Amazon S3 Bucket Name: aws-sam-cli-managed-default-samclisourcebucket-1xxxxyyyyzzzz
+
 Example folder in the Bucket: aws-sam-cli-managed-default-samclisourcebucket-1xxxxyyyyzzzz/OrgMigration
 
 Carefully review the contents and ensure it does not contain any files you may need later. 
