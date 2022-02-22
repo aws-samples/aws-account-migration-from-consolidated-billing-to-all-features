@@ -18,7 +18,7 @@
 
 ## Overview 
 
-This project contains source code and supporting files for a serverless application that you can use to migration accounts from an existing (also referred as "old" in the documentation) AWS Organization with Consolidated Billing to a new AWS Organization with All Features enabled. 
+This project contains source code and supporting files for a serverless application that you can use to migrate accounts from an existing (also referred as "old" in the documentation) AWS Organization with Consolidated Billing to a new AWS Organization with All Features enabled. 
 
 You can deploy the serverless application with the SAM CLI, which includes the following files and folders:
 
